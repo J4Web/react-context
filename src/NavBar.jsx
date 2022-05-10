@@ -1,51 +1,69 @@
-import React, { Component } from 'react'
-import { AppBar } from '@mui/material';
-import { Toolbar } from '@mui/material';
-import {IconButton} from '@mui/material'
-import {Typography} from '@mui/material'
-import {InputBase} from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
-import ToggleOnIcon from '@mui/icons-material/ToggleOn';
-import { red, green, blue } from '@mui/material/colors';
-import { withStyles } from '@mui/styles'
-// import styles from './styles/NavBarstyles'
+import React, { Component } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';    
+import { IconButton } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import {withStyles} from '@mui/styles';
+import Switch from '@mui/material/Switch';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
+import { InputBase } from '@mui/material';
 const styles = {
-    search:{
-        display:"flex",
-        justifyContent:"flex-end!important",
-        marginRight:"-900px!important",
+    root:{
+
+    },
+    inputRoot:{
+color:"inherit",
+    },
+    inputInput:{
+        paddingTop: "1em",
+        paddingLeft: "1em",
+        paddingRight: "1em",
+        paddingBottom: "1em",
+        width:"100%",
+
     }
 }
-class NavBar extends Component {
-  render() {
-      const {classes}=this.props;
-    return (
-      <div >
-          <AppBar className={classes.root} position="static" color="primary">
-          <Toolbar >
-          <IconButton className={classes.menuBtn} color="inherit">
-          <span className={classes.flag}>
-              🍔
-          </span>
-          <Typography className={classes.title} variant="h6" color="inherit">
-          App Title
 
-          </Typography>
-          <ToggleOnIcon/>
-          <div className={classes.grow}/>
-          <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                  <SearchIcon/>
-              </div>
-          </div>
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
+class NavBar extends Component{
+    render() {
+        const {classes}=this.props;
+        return(<div className='root'>
+        <AppBar position="static" color='primary'>
+        <Toolbar>
+        <Grid
+  container
+  direction="row"
+  justifyContent="space-between"
+  alignItems="center"
+>
 
-          </IconButton>
-          </Toolbar>
+    <Box component="div" sx={{ display: 'inline',textAlign:'center' }}>
+        <IconButton size="medium"
+        edge="start"
+        color="inherit"
+        aria-label='Flag-Icon'
+        >
+        <span>😀</span>
+        
+        </IconButton>
+        <Typography variant="h6" color="inherit">
+            Light
+        </Typography>
+      <Switch {...label } color="secondary" defaultChecked />
+</Box>
+      <InputBase color="inherit" placeholder='Search...' />
+      </Grid>
+        </Toolbar>
 
-          </AppBar>
-      </div>
-    )
-  }
+        </AppBar>
+
+        </div>)
+    }
 }
 
-export default withStyles(styles)(NavBar);
+export default withStyles(styles)(NavBar)
