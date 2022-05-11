@@ -15,7 +15,7 @@ import styles from "./styles/FormStyles"
 class FormComp extends React.Component {
     render() {
         const {classes}=this.props;
-        return <React.Fragment>
+        return <>
             <CssBaseline/>
             <Container maxWidth="sm">
                 <Box xs={{flexGrow:1}}>
@@ -34,7 +34,7 @@ class FormComp extends React.Component {
                 </Box>
             </Container>
 
-        </React.Fragment>
+       </>
     
     }
 }
