@@ -56,7 +56,7 @@ class NavBar extends Component{
         </Typography>
       <Switch {...label } color="secondary" defaultChecked />
 </Box>
-      <InputBase color="inherit" placeholder='Search...' />
+      <TextField {...label} color="secondary" defaultChecked placeholder="Search..." InputLabelProps={{ shrink: true }}/>
       </Grid>
         </Toolbar>
 
