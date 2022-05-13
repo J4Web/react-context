@@ -40,6 +40,12 @@ const styles={
     submit:{
         minWidth:'100%!important',
     }
+    ,select:{
+        marginTop:"15px",
+        paddingLeft:'5px',
+        paddingRight:'5px',
+    
+    }
 }
 
 class FormComp extends React.Component {
@@ -60,7 +66,7 @@ class FormComp extends React.Component {
 Sign In
 
 </Typography>
-<Select value='english'>
+<Select value='english' className={classes.select}>
     <MenuItem value="english">English</MenuItem>
     <MenuItem value="French">French</MenuItem>
     <MenuItem value="Spanish">Spanish</MenuItem>
