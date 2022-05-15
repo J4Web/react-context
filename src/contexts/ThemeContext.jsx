@@ -12,7 +12,7 @@ class ThemeProvider extends React.Component
     };
 }
     render(){
-    return <ThemeContext.Provider value={{...this.state,isChickenGrilled:'Nopes'}}>
+    return <ThemeContext.Provider value={{...this.state,isChickenGrilled:'Yeps'}}>
 {this.props.children}
     </ThemeContext.Provider>
 }
