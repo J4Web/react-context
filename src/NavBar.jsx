@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { InputBase } from '@mui/material';
 import {ThemeContext} from './contexts/ThemeContext'
+import {withLangContext} from './contexts/LanguageContainer'
 const styles = {
     root:{
 
@@ -28,6 +29,22 @@ color:"inherit",
 
     }
 }
+ const words={
+        English: {
+            flag:"🇬🇧",
+            Search:"Search"
+
+        },
+        French:{
+            flag:"🇵🇫",
+            Search:"chercher"
+
+        },
+        Spanish:{
+            flag:"🇪🇸",
+            Search:"búsqueda"
+        }
+    }
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 class NavBar extends Component{
@@ -43,7 +60,10 @@ class NavBar extends Component{
     }
     render() {
         const {isDarkMode}=this.context;
+        const {langContext}=this.props
+        const {flag,Search}=words[langContext.lang]
         // const bgcolor=
+        console.log(flag, Search)
 
         return(<div className='root'>
         <AppBar position="static" color={isDarkMode?'primary':'default'}>
@@ -61,7 +81,7 @@ class NavBar extends Component{
         color="inherit"
         aria-label='Flag-Icon'
         >
-        <span>😀</span>
+        <span>{flag}</span>
         
         </IconButton>
         <Typography variant="h6" color="inherit">
@@ -69,7 +89,7 @@ class NavBar extends Component{
         </Typography>
       <Switch {...label } color="secondary" defaultChecked onChange={this.handleChange} />
 </Box>
-      <TextField {...label} color="secondary" defaultChecked placeholder="Search..." InputLabelProps={{ shrink: true }}/>
+      <TextField {...label} color="secondary" defaultChecked placeholder={`${Search}...`} InputLabelProps={{ shrink: true }}/>
       </Grid>
         </Toolbar>
 
@@ -79,4 +99,4 @@ class NavBar extends Component{
     }
 }
 
-export default withStyles(styles)(NavBar)
+export default withLangContext(withStyles(styles)(NavBar))

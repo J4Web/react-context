@@ -4,7 +4,7 @@ class LanguageProvider extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            lang:'French'
+            lang:'English'
 
         }
         this.changeLanguage=this.changeLanguage.bind(this);
@@ -22,3 +22,9 @@ class LanguageProvider extends React.Component{
 
 
 export default LanguageProvider
+
+export const withLangContext=(Component)=>(props)=>{
+    return <LanguageContext.Consumer>
+        {val=><Component langContext={val} {...props}/>}
+    </LanguageContext.Consumer>
+}

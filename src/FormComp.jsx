@@ -88,7 +88,7 @@ class FormComp extends React.Component {
 
 </Avatar>
 <Typography variant="h5">
-Sign In
+{signIn}
 
 </Typography>
 <Select value={`${lang}`} className={classes.select} onChange={changeLanguage}>
