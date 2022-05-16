@@ -17,6 +17,7 @@ import {Input} from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
+import {LanguageContext} from './contexts/LanguageContainer'
 const styles={
     
     container: {
@@ -47,9 +48,33 @@ const styles={
     
     }
 }
-
+const words={ 
+    English:{
+        email:'Email Address',
+        signIn:"Email Address",
+        password:"Password",
+        rememberMe:"Remember Me"
+    },
+    French:{
+        email: 'Adresse Électronique',
+        signIn:"Se Connecter",
+        password:"Mot de Passe",
+        rememberMe:"Souviens-toi De Moi"
+    },
+    Spanish:{
+        email:'Dirección de correo electrónico',
+        password:"Clave",
+        signIn:"Iniciar sesión",
+        rememberMe:"Recuérdame"
+    }
+}
 class FormComp extends React.Component {
+    static contextType=LanguageContext;
     render() {
+        const {lang,changeLanguage}=this.context;
+        console.log(lang);
+        const {email,signIn,password,rememberMe}= words[lang];
+        // console.log(this.context)
         const {classes}=this.props;
         return <main >
             <CssBaseline/>
@@ -66,15 +91,15 @@ class FormComp extends React.Component {
 Sign In
 
 </Typography>
-<Select value='english' className={classes.select}>
-    <MenuItem value="english">English</MenuItem>
+<Select value={`${lang}`} className={classes.select} onChange={changeLanguage}>
+    <MenuItem value="English">English</MenuItem>
     <MenuItem value="French">French</MenuItem>
     <MenuItem value="Spanish">Spanish</MenuItem>
 </Select>
 <form className={classes.form}>
 <FormControl margin="normal" required fullWidth>
-<InputLabel htmlFor="email">
-Email
+<InputLabel htmlFor={email} placeholder={email}>
+{email}
 </InputLabel>
 <Input id="email" name="email" autoFocus>
 
@@ -82,16 +107,16 @@ Email
 
 </FormControl>
 <FormControl margin="normal" required fullWidth>
-<InputLabel htmlFor="password">
-Password
+<InputLabel htmlFor={password} placeholder={password}>
+{password}
 </InputLabel>
 <Input id="password" name="password" >
 
 </Input>
 
 </FormControl>
-<FormControlLabel control={<Checkbox/>} label="Remember Me"/>
-<Button variant="contained" type="submit" color="primary" className={classes.submit}>Sign In</Button>
+<FormControlLabel control={<Checkbox/>} label={rememberMe}/>
+<Button variant="contained" type="submit" color="primary" className={classes.submit}>{signIn}</Button>
 </form>
                 </Paper>
 
