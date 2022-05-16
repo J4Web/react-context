@@ -1,11 +1,16 @@
 import React from 'react'
-const styles = {
-    backgroundColor:'red',
+import {ThemeContext} from './contexts/ThemeContext'
+
+class PageContent extends React.Component {
+    static contextType= ThemeContext;
+
+    render(){
+        const {isDarkMode}=this.context;
+        const styles = {
+    backgroundColor: isDarkMode ? '#232323' : '#ffffff',
     height:'100vh',
     width:'100vw',
 }
-class PageContent extends React.Component {
-    render(){
         console.log(this.props.children)
         return <div style={styles}>
             {this.props.children}

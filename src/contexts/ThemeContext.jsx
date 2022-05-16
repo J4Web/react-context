@@ -10,9 +10,15 @@ class ThemeProvider extends React.Component
     this.state={
         isDarkMode: false,
     };
+    this.handleChange=this.handleChange.bind(this);
+}
+handleChange(event){
+    this.setState((oldSt)=>({
+        isDarkMode:!(oldSt.isDarkMode)
+    }))
 }
     render(){
-    return <ThemeContext.Provider value={{...this.state,isChickenGrilled:'Yeps'}}>
+    return <ThemeContext.Provider value={{...this.state,handleChange:this.handleChange}}>
 {this.props.children}
     </ThemeContext.Provider>
 }

@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { InputBase } from '@mui/material';
+import {ThemeContext} from './contexts/ThemeContext'
 const styles = {
     root:{
 
@@ -30,10 +31,22 @@ color:"inherit",
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 class NavBar extends Component{
+    static contextType = ThemeContext;
+    constructor(props)
+    {
+        super(props);
+        this.handleChange=this.handleChange.bind(this);
+    }
+ handleChange()
+    {
+        this.context.handleChange()
+    }
     render() {
-        const {classes}=this.props;
+        const {isDarkMode}=this.context;
+        // const bgcolor=
+
         return(<div className='root'>
-        <AppBar position="static" color='primary'>
+        <AppBar position="static" color={isDarkMode?'primary':'default'}>
         <Toolbar>
         <Grid
   container
@@ -52,9 +65,9 @@ class NavBar extends Component{
         
         </IconButton>
         <Typography variant="h6" color="inherit">
-            Light
+            {isDarkMode? 'Dark':'Light'}
         </Typography>
-      <Switch {...label } color="secondary" defaultChecked />
+      <Switch {...label } color="secondary" defaultChecked onChange={this.handleChange} />
 </Box>
       <TextField {...label} color="secondary" defaultChecked placeholder="Search..." InputLabelProps={{ shrink: true }}/>
       </Grid>
