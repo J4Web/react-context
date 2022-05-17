@@ -23,8 +23,8 @@ class LanguageProvider extends React.Component{
 
 export default LanguageProvider
 
-export const withLangContext=(Component)=>(props)=>{
-    return <LanguageContext.Consumer>
-        {val=><Component langContext={val} {...props}/>}
-    </LanguageContext.Consumer>
-}
+// export const withLangContext=(Component)=>(props)=>{
+//     return <LanguageContext.Consumer>
+//         {val=><Component langContext={val} {...props}/>}
+//     </LanguageContext.Consumer>
+// }
