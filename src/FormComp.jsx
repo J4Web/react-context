@@ -1,4 +1,4 @@
-import React from  'react'
+import React,{useContext} from  'react'
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -68,15 +68,18 @@ const words={
         rememberMe:"Recuérdame"
     }
 }
-class FormComp extends React.Component {
-    static contextType=LanguageContext;
-    render() {
-        const {lang,changeLanguage}=this.context;
+
+
+
+function FormComp(props) {
+    const value=useContext(LanguageContext);
+    const {lang,changeLanguage}=value;
         console.log(lang);
         const {email,signIn,password,rememberMe}= words[lang];
         // console.log(this.context)
-        const {classes}=this.props;
-        return <main >
+        const {classes}=props;
+    return (
+        <main >
             <CssBaseline/>
             <Container className={classes.container} >
                 <Box xs={{flexGrow:1}} >
@@ -127,6 +130,69 @@ class FormComp extends React.Component {
             </Container>
 
        </main>
-    }
+       
+    )
 }
+
+// class FormComp extends React.Component {
+//     static contextType=LanguageContext;
+//     render() {
+//         const {lang,changeLanguage}=this.context;
+//         console.log(lang);
+//         const {email,signIn,password,rememberMe}= words[lang];
+//         // console.log(this.context)
+//         const {classes}=this.props;
+//         return <main >
+//             <CssBaseline/>
+//             <Container className={classes.container} >
+//                 <Box xs={{flexGrow:1}} >
+//                 <Grid style={{display:'flex',justifyContent:'center',alignItems: 'center'}} container spacing={1}>
+//                 <Grid item xs={8}>
+//                 <Paper  className={classes.topContainer}>
+// <Avatar sx={{ bgcolor: pink[500]}}>
+// <LockIcon />
+
+// </Avatar>
+// <Typography variant="h5">
+// {signIn}
+
+// </Typography>
+// <Select value={`${lang}`} className={classes.select} onChange={changeLanguage}>
+//     <MenuItem value="English">English</MenuItem>
+//     <MenuItem value="French">French</MenuItem>
+//     <MenuItem value="Spanish">Spanish</MenuItem>
+// </Select>
+// <form className={classes.form}>
+// <FormControl margin="normal" required fullWidth>
+// <InputLabel htmlFor={email} placeholder={email}>
+// {email}
+// </InputLabel>
+// <Input id="email" name="email" autoFocus>
+
+// </Input>
+
+// </FormControl>
+// <FormControl margin="normal" required fullWidth>
+// <InputLabel htmlFor={password} placeholder={password}>
+// {password}
+// </InputLabel>
+// <Input id="password" name="password" >
+
+// </Input>
+
+// </FormControl>
+// <FormControlLabel control={<Checkbox/>} label={rememberMe}/>
+// <Button variant="contained" type="submit" color="primary" className={classes.submit}>{signIn}</Button>
+// </form>
+//                 </Paper>
+
+//                 </Grid>
+                    
+//                 </Grid>
+//                 </Box>
+//             </Container>
+
+//        </main>
+//     }
+// }
 export default withStyles(styles)(FormComp)
